@@ -6,7 +6,7 @@ engine = create_async_engine(
     'sqlite+aiosqlite:///tasks.db'
 )
 
-session = async_sessionmaker(engine, expire_on_commit=False)
+db_session = async_sessionmaker(engine, expire_on_commit=False)
 
 class Model(DeclarativeBase):
     pass
@@ -27,4 +27,3 @@ async def create_table():
 async def delete_tables():
     async with engine.begin() as conn:
         await conn.run_sync(Model.metadata.drop_all)
-

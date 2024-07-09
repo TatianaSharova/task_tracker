@@ -8,13 +8,6 @@
 ```
 git@github.com:TatianaSharova/task_tracker.git
 ```
-**_В директории проекта создать файл .env и заполнить своими данными:_**
-```
-TELEGRAM_BOT_TOKEN         - токен вашего телеграм бота
-COIN_MARKET_TOKEN          - токен от API криптовалютной биржи CoinMarket
-DB_LITE                    - 'sqlite+aiosqlite:///bot_base.db'
-COINMARKETCAP_URL          - 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
-```
 **_Создать и активировать виртуальное окружение:_**
 
 Для Linux/macOS:
@@ -40,6 +33,4 @@ pip install -r requirements.txt
 uvicorn main:app
 ```
 **_Документация к проекту будет доступна по адресу:_**
-```
 http://127.0.0.1:8000/docs
-```
