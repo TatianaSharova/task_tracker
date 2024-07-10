@@ -1,4 +1,4 @@
-Трекер задач
+Трекер задач. Можно добавлять задачи и просматривать их.
 
 Стэк: fastapi, sqlalchemy, aisqlite, uvicorn
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ```
 **_Запустить проект:_**
 ```
-uvicorn main:app
+uvicorn main:app --reload
 ```
 **_Документация к проекту будет доступна по адресу:_**
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/doc/
