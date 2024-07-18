@@ -1,65 +1,61 @@
-import React, { useState } from 'react';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Radio, Tag } from 'antd';
-const customizeRequiredMark = (label, { required }) => (
-  <>
-    {required ? <Tag color="error">Required</Tag> : <Tag color="warning">optional</Tag>}
-    {label}
-  </>
-);
-const App = () => {
-  const [form] = Form.useForm();
-  const [requiredMark, setRequiredMarkType] = useState('optional');
-  const onRequiredTypeChange = ({ requiredMarkValue }) => {
-    setRequiredMarkType(requiredMarkValue);
-  };
-  return (
-    <Form
-      form={form}
-      layout="vertical"
-      initialValues={{
-        requiredMarkValue: requiredMark,
-      }}
-      onValuesChange={onRequiredTypeChange}
-      requiredMark={requiredMark === 'customize' ? customizeRequiredMark : requiredMark}
-    >
-      <Form.Item label="Required Mark" name="requiredMarkValue">
-        <Radio.Group>
-          <Radio.Button value>Default</Radio.Button>
-          <Radio.Button value="optional">Optional</Radio.Button>
-          <Radio.Button value={false}>Hidden</Radio.Button>
-          <Radio.Button value="customize">Customize</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item label="Field A" required tooltip="This is a required field">
-        <Input placeholder="input placeholder" />
-      </Form.Item>
-      <Form.Item
-        label="Field B"
-        tooltip={{
-          title: 'Tooltip with customize icon',
-          icon: <InfoCircleOutlined />,
-        }}
-      >
-        <Input placeholder="input placeholder" />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary">Submit</Button>
-      </Form.Item>
-    </Form>
-  );
+import React from 'react';
+import { Button, Form, Input, InputNumber } from 'antd';
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
 };
+
+/* eslint-disable no-template-curly-in-string */
+const validateMessages = {
+  required: '${label} is required!'
+};
+/* eslint-enable no-template-curly-in-string */
+
+const onFinish = (values) => {
+  console.log(values);
+};
+const App = () => (
+  <Form
+    {...layout}
+    name="tasks"
+    onFinish={onFinish}
+    style={{
+      maxWidth: 600,
+    }}
+    validateMessages={validateMessages}
+  >
+    <Form.Item
+      name={['task',]}
+      label="Задача"
+      rules={[
+        {
+          required: true,
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>
+    <Form.Item
+      name={['description']}
+      label="Описание"
+    >
+      <Input.TextArea />
+    </Form.Item>
+    
+    <Form.Item
+      wrapperCol={{
+        ...layout.wrapperCol,
+        offset: 8,
+      }}
+    >
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+);
 export default App;
-
-// import TaskCard from './components/taskcard.jsx'
-
-// function App() {
-
-//   return (
-//     <div>
-//       <TaskCard/>
-//     </div>
-//   )
-// }
-
-// export default App
